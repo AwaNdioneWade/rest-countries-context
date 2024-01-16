@@ -1,6 +1,5 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CountriesContext from './CountriesContext';
