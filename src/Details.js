@@ -2,6 +2,8 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import CountriesContext from './CountriesContext';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { Entete } from './allCountries';
 
 
 function Details({ countries }) {
@@ -23,10 +25,14 @@ function Details({ countries }) {
   const { nativeName, population, continents, capital, subregion, tld, currencies, languages } = country;
 
   return (
-    <div className="container mt-0 mt-md-5">
+    <div style={{background: 'hsl(0, 0%, 98%)', color: 'hsl(207, 26%, 17%)'}}>
+      <Entete />
+      <div className="container mt-0 mt-md-5">
       <div className="row">
         <div className="col-12 my-5">
-          <button onClick={() => window.history.back()}>Back</button>
+          <button style={{border: 'none', padding: '7px'}} onClick={() => window.history.back()}>
+            <IoMdArrowRoundBack />  Back
+          </button>
         </div>
       </div>
       <div className="row">
@@ -53,6 +59,8 @@ function Details({ countries }) {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 

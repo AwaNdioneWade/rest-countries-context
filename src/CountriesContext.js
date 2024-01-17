@@ -1,14 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import UseContries from './UseContries';
 
-const CountriesContext = createContext({
-  valueInput: '',
-  setValueInput: () => {},
-  continent: '',
-  setContinent: () => {},
-  filteredCountries: [],
-  handleContinentChange: () => {}
-});
+const CountriesContext = createContext();
 
 export default CountriesContext;
 
@@ -16,10 +9,19 @@ const CountriesContextProvider = ({ children }) => {
 
   const [valueInput, setValueInput] = useState('');
   const [continent, setContinent] = useState('');
+  const [mode, setMode] = useState(true);
   const countries = UseContries();
 
   const handleContinentChange = (e) => {
     setContinent(e.target.value);
+  };
+
+  const handleModeChange = (e) => {
+    if (mode) {
+      setMode(false);
+    }else{
+      setMode(true);
+    }
   };
 
   // Filter pays par letter saisi
@@ -38,6 +40,8 @@ const CountriesContextProvider = ({ children }) => {
     setValueInput,
     continent,
     setContinent,
+    mode,
+    handleModeChange,
     filteredCountries: filteredByContinentAndLetter,
     handleContinentChange,
     countries

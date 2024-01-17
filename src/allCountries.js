@@ -3,16 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CountriesContext from './CountriesContext';
-import { MdDarkMode } from "react-icons/md";
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 
 function AllCountries(){
   
   const {
-    valueInput,
-    setValueInput,
-    handleContinentChange,
-    filteredCountries,
-  } = useContext(CountriesContext);
+          valueInput,
+          setValueInput,
+          handleContinentChange,
+          filteredCountries,
+        } = useContext(CountriesContext);
+
     return(
         <div style={{background: 'hsl(0, 0%, 98%)', color: 'hsl(207, 26%, 17%)'}}>
             <Entete />
@@ -63,8 +64,9 @@ const Card = ({countries}) => {
     )
 }
 
-const Entete = () => {
+export const Entete = () => {
   
+  const {mode, handleModeChange} = useContext(CountriesContext)
     return (
       <div className="container-fluid p-5" style={{background: 'hsl(0, 0%, 100%)'}}>
             <div className="row">
@@ -72,7 +74,8 @@ const Entete = () => {
                     <h1>Where in the world?</h1>
                 </div>
                 <div className="col-6 text-end">
-                    <h3> <span><MdDarkMode /></span> Dark Mode</h3>
+                    <h3 onClick={()=>{handleModeChange()}}> {mode ? <span style={{cursor: "pointer"}}><MdDarkMode /> Dark Mode</span> : <span style={{cursor: "pointer"}}><MdOutlineDarkMode /> light Mode</span>} </h3>
+                    {/* <h3 onClick={()=>{handleModeChange()}}> <span style={{cursor: "pointer"}}>{mode ? <MdDarkMode /> "Dark Mode"  : <MdOutlineDarkMode /> "light Mode"}</span>  </h3> */}
                 </div>
             </div>
         </div>
@@ -90,7 +93,7 @@ const Input = ({ type, value, onChange, placeholder, style }) => {
 }
   
   // Composant select
-  const Select = ({setContinent}) => {
+const Select = ({setContinent}) => {
   
     return (
             <div className="col-12 col-md-6 text-md-end mt-md-0 mt-5">
@@ -104,6 +107,6 @@ const Input = ({ type, value, onChange, placeholder, style }) => {
             </select>
           </div>
     )
-  }
+}
 
 export default AllCountries;
